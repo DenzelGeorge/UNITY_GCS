@@ -13,8 +13,8 @@ const int control_state_switch = 34;
 int rotator_azimuth = 0;           //Stores the Azimuth Angle (Range : 0 - 450 degrees) from the rotator
 int rotator_elevation = 0;         //Stores the Elevation Angle (Range : 0 - 180 degrees) from the rotator
 
-int azimuth_angle = 0;           //Stores the converted value from Azimuth analog to Angle (Range : 0 - 450 degrees)
-int elevation_angle = 0;         //Stores the converted value from Elevation analog to Angle (Range : 0 - 180 degrees)
+int azimuth_angle = 0;           //Stores the converted value from SatNOGS/Orbitron
+int elevation_angle = 0;         //Stores the converted value from SatNOGS/Orbitron
 
 
 int initial_delay = 1;             //To display the Booting message
@@ -60,9 +60,8 @@ void loop()
     
     rotator_azimuth = rotor.getAzDegrees(); //Read the current value through analog pins
     rotator_elevation = rotor.getElDegrees(); //Read the current value through analog pins
-    azimuth_reading(); //Read the required value from Orbitron/SatNOGS value through Serial port
-    elevation_reading(); //Read the required value from Orbitron/SatNOGS value through Serial port
-  
+    read_input(); //Read the required value from Orbitron/SatNOGS value through Serial port
+ 
     rotor.setAzEl(azimuth_angle, elevation_angle); //Set the rotator to the angle
   
     lcd_display();
@@ -96,37 +95,18 @@ void check_control_state()
   }
 }
 
-void azimuth_reading()
-{
-  if(Serial.available())
-  {
-	  /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	  You need to first read the entire string and extract the substring from it using the String library.
-	  Function name : Substring(from, to)*/
-	  //read_az - Serial.read
-	  //Extract_pos = indexof()
-	  //Extract = .substring(0, Extract_pos+1)
-	  //Use toInt() TO CONVERT STRING TO INTEGER
-    azimuth_angle = 
+void read_input(){
+  while(Serial.available()){
+    String AzEl = Serial.readString(); //Data is formatted as AZ$EL
+    int ind = AzEl.indexOf("$");
+    String Az = AzEl.substring(0,ind);
+    String El = AzEl.substring(ind + 1);
+    azimuth_angle = Az.toInt();
+    elevation_angle = El.toInt();
   }
 }
 
-void elevation_reading()
-{	
-  if(Serial.available())
-  {
-	  /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	  You need to first read the entire string and extract the substring from it using the String library.
-	  Function name : Substring(from, to)*/
-	  
-	   //read_el = Serial.read()
-	  //Extract_pos = indexof()
-	  //Extract = .substring(0, Extract_pos+1)
-	  
-	  //Use toInt() TO CONVERT STRING TO INTEGER
-    elevation_angle = 
-  }
-}
+
 
 void lcd_display()
 {
@@ -140,4 +120,3 @@ void lcd_display()
   lcd.setCursor(18, 3);
   lcd.print(control_state);
 }
-

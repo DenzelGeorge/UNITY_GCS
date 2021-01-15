@@ -7,5 +7,8 @@ void loop(){
   int ind = AzEl.indexOf("$");
   String Az = AzEl.substring(0,ind);
   String El = AzEl.substring(ind + 1);
-  Serial.println("AZ: " + Az + " EL: " + El);
+  int azimuth_angle = Az.toInt();
+  int elevation_angle = El.toInt();
+  Serial.print("AZ: " +azimuth_angle);
+  Serial.println(" EL: " +elevation_angle);
 }
