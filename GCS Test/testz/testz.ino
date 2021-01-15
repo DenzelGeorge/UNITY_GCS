@@ -18,20 +18,16 @@ int elevation_angle = 0;         //Stores the converted value from SatNOGS/Orbit
 
 
 int initial_delay = 1;             //To display the Booting message
-
 int control_state_switch_state = 0;
 
 String control_state = "";         //Depending on the toggle switch, this can be used to set to AUTOMATIC (A) or MANUAL (M).
-//In Automatic Mode, the SATNOGS/Orbitron control the rotator.
-//In Manual Mode, the user can manually control the rotator using the UP, DOWN, LEFT, RIGHT buttons.
 
-// Set the LCD address to 0x27 for a 16 chars and 4 line display
-LiquidCrystal_I2C lcd(0x27, 20, 4);
+LiquidCrystal_I2C lcd(0x27, 20, 4); // Set the LCD address to 0x27 for a 16 chars and 4 line display
 
 void setup()
 {
   Serial.begin(9600); //To read live AZ and EL values from Orbitron/SatNOGS
-  Serial1.begin(9600); //For verification purposes, to view using Serial monitor
+  Serial1.begin(9600); //For verification purposes, to view using Serial monitor AKA Troubleshooting
 
   lcd.begin();
   lcd.backlight();
