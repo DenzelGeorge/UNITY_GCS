@@ -20,7 +20,7 @@ int elevation_angle = 0;         //Stores the converted value from SatNOGS/Orbit
 int initial_delay = 1;             //To display the Booting message
 int control_state_switch_state = 0;
 
-String control_state = "";         //Depending on the toggle switch, this can be used to set to AUTOMATIC (A) or MANUAL (M).
+String control_state = "A";         //Depending on the toggle switch, this can be used to set to AUTOMATIC (A) or MANUAL (M). Automatic by default
 
 LiquidCrystal_I2C lcd(0x27, 20, 4); // Set the LCD address to 0x27 for a 16 chars and 4 line display
 
@@ -62,8 +62,10 @@ void loop()
   
     lcd_display();
     
-    Serial1.println("AZIMUTH ANGLE =  " + String(rotator_azimuth));
-    Serial1.println("ELEVATION ANGLE =  " + String(rotator_elevation));
+    Serial1.println("ROTATOR AZIMUTH ANGLE =  " + String(rotator_azimuth));
+    Serial1.println("INPUT AZIMUTH ANGLE =  " + String(azimuth_angle));
+    Serial1.println("ROTATOR ELEVATION ANGLE =  " + String(rotator_elevation));
+    Serial1.println("INPUT ELEVATION ANGLE =  " + String(elevation_angle));
     Serial1.println("CONTROL STATE =  " + String(control_state));
     delay(1000);
   }
@@ -74,8 +76,8 @@ void loop()
     
     lcd_display();
     
-    Serial1.println("AZIMUTH ANGLE =  " + String(azimuth_angle));
-    Serial1.println("ELEVATION ANGLE =  " + String(elevation_angle));
+    Serial1.println("AZIMUTH ANGLE =  " + String(rotator_azimuth));
+    Serial1.println("ELEVATION ANGLE =  " + String(rotator_elevation));
     Serial1.println("CONTROL STATE =  " + String(control_state));
     delay(1000);
   }
