@@ -61,6 +61,7 @@ void loop()
     rotor.setAzEl(azimuth_angle, elevation_angle); //Set the rotator to the angle
   
     lcd_display();
+    
     Serial1.println("AZIMUTH ANGLE =  " + String(rotator_azimuth));
     Serial1.println("ELEVATION ANGLE =  " + String(rotator_elevation));
     Serial1.println("CONTROL STATE =  " + String(control_state));
@@ -70,7 +71,9 @@ void loop()
   {
     rotator_azimuth = rotor.getAzDegrees(); //Read the current value through analog pins
     rotator_elevation = rotor.getElDegrees(); //Read the current value through analog pins
+    
     lcd_display();
+    
     Serial1.println("AZIMUTH ANGLE =  " + String(azimuth_angle));
     Serial1.println("ELEVATION ANGLE =  " + String(elevation_angle));
     Serial1.println("CONTROL STATE =  " + String(control_state));
