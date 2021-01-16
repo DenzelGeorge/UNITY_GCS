@@ -9,6 +9,6 @@ void loop(){
   String El = AzEl.substring(ind + 1);
   int azimuth_angle = Az.toInt();
   int elevation_angle = El.toInt();
-  Serial.print("AZ: " +azimuth_angle);
-  Serial.println(" EL: " +elevation_angle);
+  Serial.print("AZ: "+String(azimuth_angle));
+  Serial.println(" EL: "+String(elevation_angle));
 }
