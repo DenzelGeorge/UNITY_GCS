@@ -54,8 +54,8 @@ void loop()
   check_control_state();
   if(control_state == "A"){
     
-    rotator_azimuth = rotor.getAzDegrees(); //Read the current value through analog pins
-    rotator_elevation = rotor.getElDegrees(); //Read the current value through analog pins
+   // rotator_azimuth = rotor.getAzDegrees(); //Read the current value through analog pins
+    //rotator_elevation = rotor.getElDegrees(); //Read the current value through analog pins
     read_input(); //Read the required value from Orbitron/SatNOGS value through Serial port
  
     rotor.setAzEl(azimuth_angle, elevation_angle); //Set the rotator to the angle
@@ -71,8 +71,8 @@ void loop()
   }
   else
   {
-    rotator_azimuth = rotor.getAzDegrees(); //Read the current value through analog pins
-    rotator_elevation = rotor.getElDegrees(); //Read the current value through analog pins
+   // rotator_azimuth = rotor.getAzDegrees(); //Read the current value through analog pins
+    //rotator_elevation = rotor.getElDegrees(); //Read the current value through analog pins
     
     lcd_display();
     
@@ -115,9 +115,9 @@ void lcd_display()
   lcd.setCursor(0, 0);
   lcd.print("----UNITYSAT GCS----");
   lcd.setCursor(0, 1);
-  lcd.print("AZIMUTH: " + String(rotator_azimuth));
+  lcd.print("AZIMUTH: " + String(azimuth_angle));
   lcd.setCursor(0, 2);
-  lcd.print("ELEVATION: " + String(rotator_elevation));
+  lcd.print("ELEVATION: " + String(elevation_angle));
   lcd.setCursor(18, 3);
   lcd.print(control_state);
 }
