@@ -26,5 +26,6 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  Serial.print(F("[SX1262] Transmitting packet ... "));
+  Serial.print(F("Transmitting packet ... "));
+  int state = radio.transmit("UNITYSat");
 }
