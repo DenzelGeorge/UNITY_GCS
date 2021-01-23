@@ -54,8 +54,8 @@ void loop()
   check_control_state();
   if(control_state == "A"){
     
-   // rotator_azimuth = rotor.getAzDegrees(); //Read the current value through analog pins
-    //rotator_elevation = rotor.getElDegrees(); //Read the current value through analog pins
+    rotator_azimuth = rotor.getAzDegrees(); //Read the current value through analog pins
+    rotator_elevation = rotor.getElDegrees(); //Read the current value through analog pins
     read_input(); //Read the required value from Orbitron/SatNOGS value through Serial port
  
     rotor.setAzEl(azimuth_angle, elevation_angle); //Set the rotator to the angle
@@ -71,8 +71,8 @@ void loop()
   }
   else
   {
-   // rotator_azimuth = rotor.getAzDegrees(); //Read the current value through analog pins
-    //rotator_elevation = rotor.getElDegrees(); //Read the current value through analog pins
+    rotator_azimuth = rotor.getAzDegrees(); //Read the current value through analog pins
+    rotator_elevation = rotor.getElDegrees(); //Read the current value through analog pins
     
     lcd_display();
     
