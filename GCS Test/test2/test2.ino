@@ -1,8 +1,12 @@
 #include <LiquidCrystal_I2C.h>
+
 LiquidCrystal_I2C lcd(0x27, 20, 4);
+
 void setup(){
   Serial.begin(9600);
+  Serial.println("here");
   lcd.begin();
+  Serial.println("here1");
   lcd.backlight();
   lcd.clear();
   lcd.setCursor(0, 0);
@@ -16,8 +20,8 @@ void setup(){
 }
 
 void loop(){
-  //String AzEl = "213.9$-37.7";
-   while(Serial.available()){
+  String AzEl = "213.9$-37.7";
+  /* while(Serial.available()){
      String AzEl = Serial.readString();
     int ind = AzEl.indexOf("$");
     String Az = AzEl.substring(0,ind);
@@ -27,7 +31,16 @@ void loop(){
     lcd_display(azimuth_angle,elevation_angle);
    //Serial.print("AZ: "+String(azimuth_angle));
    //Serial.println(" EL: "+String(elevation_angle));
-   }   
+   }   */
+//  String AzEl = Serial.readString();
+  int ind = AzEl.indexOf("$");
+  String Az = AzEl.substring(0,ind);
+  String El = AzEl.substring(ind + 1);
+  int azimuth_angle = Az.toInt();
+  int elevation_angle = El.toInt();
+  //lcd_display(azimuth_angle,elevation_angle);
+  Serial.print("AZ: "+String(azimuth_angle));
+  Serial.println(" EL: "+String(elevation_angle));
 }
 
 void lcd_display(int Azimuth, int Elevation)
