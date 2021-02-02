@@ -27,8 +27,8 @@ void loop() {
   //rotor.setEl(45);
 
   
-  Serial.print("AZ=  " + String(rotator_azimuth));
-  Serial.println(" EL=  " + String(rotator_elevation));
+  //Serial.print("AZ=  " + String(rotator_azimuth));
+  //Serial.println(" EL=  " + String(rotator_elevation));
 }
 
 void read_input(){
