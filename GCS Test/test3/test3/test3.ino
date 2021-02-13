@@ -1,6 +1,5 @@
 #include <G5500.h>
 
-
 G5500 rotor = G5500();
 
 int rotator_azimuth = 0;           //Stores the Azimuth Angle (Range : 0 - 450 degrees) from the rotator
