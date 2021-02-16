@@ -28,7 +28,7 @@ void setup()
 {
   Serial.begin(9600); //To read live AZ and EL values from Orbitron/SatNOGS
   Serial1.begin(9600); //For verification purposes, to view using Serial monitor AKA Troubleshooting
-
+  pinMode(control_state_switch,INPUT);
   lcd.begin();
   lcd.backlight();
   lcd.clear();
@@ -62,11 +62,11 @@ void loop()
   
     lcd_display();
     
-    Serial1.println("ROTATOR AZIMUTH ANGLE =  " + String(rotator_azimuth));
+    /*Serial1.println("ROTATOR AZIMUTH ANGLE =  " + String(rotator_azimuth));
     Serial1.println("INPUT AZIMUTH ANGLE =  " + String(azimuth_angle));
     Serial1.println("ROTATOR ELEVATION ANGLE =  " + String(rotator_elevation));
     Serial1.println("INPUT ELEVATION ANGLE =  " + String(elevation_angle));
-    Serial1.println("CONTROL STATE =  " + String(control_state));
+    Serial1.println("CONTROL STATE =  " + String(control_state));*/
     delay(1000);
   }
   else
