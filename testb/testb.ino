@@ -15,6 +15,21 @@
 SX1262 radio = new Module(NSS,DIO1,NRST,BUSY);
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
 
+//CAllSign 
+char callsign[] = "UNITYSat";
+
+//Flags
+volatile bool interruptEnabled = true;
+volatile bool transmissionReceived = false;
+
+void onInterrupt() {
+  if (!interruptEnabled) {
+    return;
+  }
+
+  transmissionReceived = true;
+}
+
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
@@ -54,13 +69,5 @@ void loop() {
   //LoRa Transmission Test
   Serial.println(F("Transmitting packet ... "));
   int state = radio.transmit("UNITYSat");
-  //Serial.println(radio.getRSSI());
 
-  if (state == ERR_NONE) {
-    // the packet was successfully transmitted
-    Serial.println(F("success!"));
-    Serial.print(F("[SX1268] Datarate:\t"));
-    Serial.print(radio.getDataRate());
-    Serial.println(F(" bps"));
-  }
 }

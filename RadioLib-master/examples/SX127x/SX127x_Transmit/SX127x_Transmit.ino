@@ -1,3 +1,5 @@
+#include <SPI.h>
+
 /*
    RadioLib SX127x Transmit Example
 
@@ -25,6 +27,9 @@
 // RESET pin: 9
 // DIO1 pin:  3
 SX1278 radio = new Module(10, 2, 9, 3);
+#define MOSI 5 
+#define MISO 6
+#define SCK 7
 
 // or using RadioShield
 // https://github.com/jgromes/RadioShield
